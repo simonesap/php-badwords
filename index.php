@@ -8,9 +8,33 @@ Stampare di nuovo il paragrafo e la sua lunghezza, dopo aver sostituito con tre 
 $paragrafo = 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. 
               Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur.    ';
 
-$censura = $_GET['censura'];  
+// $censura = $_GET['censura'];  
+$censura = isset($_GET['censura'] ) ? $_GET['censura'] : '';
 
-$paragrafoValidato = str_replace($censura,'***',$paragrafo);
+$paragrafoValidato = str_ireplace($censura,'***',$paragrafo);
+
+
+$stringa1 = 'Il paragrafo censurato è lungo: ';
+$stringa2 = ' caratteri';
+$stringa3 = 'La parola da censurare è: ';
+
+// // Metodologia Empty e ciclo if
+// if( $_GET['censura'] != '') {
+//     $censura = $GET['censura'];
+//     $paragrafoValidato = str_ireplace($censura,'***',$paragrafo);
+//     $paragrafoValidatoLunghezza = str_ireplace($paragrafoValidato);
+// } else {
+//     $paragrafoValidato = $paragrafo;
+// }
+
+// // Metodologia Empty e ciclo if
+// if( !empty($_GET['censura'] ) ) {
+//     $censura = $GET['censura'];
+//     $paragrafoValidato = str_ireplace($censura,'***',$paragrafo);
+//     $paragrafoValidatoLunghezza = str_ireplace($paragrafoValidato);
+// } else {
+//     $paragrafoValidato = $paragrafo;
+// }
 
 ?>
 
@@ -57,16 +81,28 @@ $paragrafoValidato = str_replace($censura,'***',$paragrafo);
             ?>
         </p>
         <p>
-            Il paragrafo censurato è lungo: 
 
             <?php 
 
                 if ($censura != '') 
-                echo strlen($paragrafoValidato);
+                    echo $stringa1;
+                    echo strlen($paragrafoValidato);
+                    echo $stringa2;
 
             ?> 
             
-            caratteri.
+        </p>
+
+        <p>
+
+            <?php 
+
+                if ($censura != '') 
+                    echo $stringa3;
+                    echo $censura;
+
+            ?> 
+
         </p>
 
     </div>
